@@ -38,8 +38,24 @@ class Authentication extends Controller
             'password'  =>   $request->input('password'),
         ];
         $response = $this->httpPost('api/v2/token', $data);
-                        
-        return $response;
+
+        if(isset($response['token_key'])) {
+            Token::updateOrCreate([
+                'email' => $request->input('email'),
+                'token' => $response['token_key']
+            ],
+            [
+                'email' => $request->input('email'),
+            ]);
+            session([
+                'email' => $request->input('email'),
+                'token' => $response['token_key']
+            ]);
+            return redirect('/dashboard');
+        } else {
+            return redirect()->back()->withErrors(['error' => 'User not found']);;
+        }
+        
     }
 
    

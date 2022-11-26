@@ -12,6 +12,9 @@
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="get-token" method="post">
                             @csrf
+                            @if($errors->any())
+                             <div class="alert alert-danger">{{$errors->first()}}</div>
+                            @endif
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="email" class="text-info">E-Mail:</label><br>

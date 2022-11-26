@@ -16,4 +16,18 @@ use App\Http\Controllers\Authentication;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    $value = session('token');
+    return view('dashboard');
+});
+
+Route::get('/authors', function () {    
+    return view('authors');
+});
+
+Route::get('/books', function () {
+    return view('books');
+});
+
 Route::post('/get-token', [Authentication::class, 'getToken']);
