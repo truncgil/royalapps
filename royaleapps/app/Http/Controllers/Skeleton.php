@@ -30,6 +30,9 @@ class Skeleton extends Controller
         if($type=='get') {
             $response = $response->get($url, $data);
         }
+        if($type=='delete') {
+            $response = $response->delete($url, $data);
+        }
 
         
 
