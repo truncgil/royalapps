@@ -1,3 +1,4 @@
+<?php $data = session('data'); ?>
 <header class="p-3 bg-dark text-white">
 <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -13,6 +14,12 @@
 
 
     <div class="text-end">
+
+        <a href="#" type="button" class="btn btn-outline-light me-2">
+            {{$data['user']['first_name']}}
+            {{$data['user']['last_name']}}
+        
+        </a>
         <a href="{{url('logout')}}" type="button" class="btn btn-outline-light me-2">Logout</a>
     </div>
     </div>
