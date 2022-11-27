@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Authentication;
+use App\Http\Controllers\AuthorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +23,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/authors', function () {    
-    return view('authors');
-});
+Route::get('/authors', [AuthorController::class, 'listAuthors']);
 
 Route::get('/books', function () {
     return view('books');
