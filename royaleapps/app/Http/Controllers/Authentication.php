@@ -9,6 +9,15 @@ use App\Http\Controllers\Skeleton;
 class Authentication extends Controller
 {
     
+    /**
+     * Logout session 
+     */
+    public function logOut() {
+        session()->forget('email');
+        session()->forget('token');
+        session()->forget('data');
+        return redirect('/');
+    }
 
     /**
      * Issue an API access token
