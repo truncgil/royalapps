@@ -39,11 +39,12 @@ class Authentication extends Controller
             ]);
             session([
                 'email' => $request->input('email'),
-                'token' => $response['token_key']
+                'token' => $response['token_key'],
+                'data' => $response
             ]);
             return redirect('/dashboard');
         } else {
-            return redirect()->back()->withErrors(['error' => 'User not found']);;
+            return redirect()->back()->withErrors(['error' => 'User not found']);
         }
         
     }
