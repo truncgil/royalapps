@@ -15,18 +15,18 @@
                             @if($errors->any())
                              <div class="alert alert-danger">{{$errors->first()}}</div>
                             @endif
-                            <h3 class="text-center text-info">Login</h3>
+                            <h3 class="text-center text-primary">Login</h3>
                             <div class="form-group">
-                                <label for="email" class="text-info">E-Mail:</label><br>
+                                <label for="email" class="text-primary">E-Mail:</label><br>
                                 <input type="email" name="email" id="email" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
+                                <label for="password" class="text-primary">Password:</label><br>
                                 <input type="text" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                <br>
+                                <input type="submit" name="submit" class="btn btn-primary btn-md" value="submit">
                             </div>
                         </form>
                     </div>
