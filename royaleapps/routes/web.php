@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Authentication;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +25,11 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/authors', [AuthorController::class, 'listAuthors']);
+Route::get('/delete-author/{id}', [AuthorController::class, 'deleteAuthor']);
 
-Route::get('/books', function () {
-    return view('books');
-});
+Route::get('/books', [BookController::class, 'listBooks']);
+Route::get('/create-book', [BookController::class, 'createBook']);
+Route::post('/store-book', [BookController::class, 'storeBook']);
+Route::get('/delete-book/{id}', [BookController::class, 'deleteBook']);
 
 Route::post('/get-token', [Authentication::class, 'getToken']);
