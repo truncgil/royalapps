@@ -3,23 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use App\Models\Token;
+use App\Http\Controllers\Skeleton;
 
 class Authentication extends Controller
 {
-    /**
-     * Generate api url
-     */
-    private function getApiUrl($endpoint) {
-        $url = env('SKELETON_URL');
-        return $url . $endpoint;
-    }
-
-    private function httpPost($endpoint, $data) {
-        return Http::acceptJson()
-                    ->post($this->getApiUrl($endpoint), $data)->json();
-    }
+    
 
     /**
      * Issue an API access token
@@ -37,7 +26,8 @@ class Authentication extends Controller
             'email'     =>   $request->input('email'),
             'password'  =>   $request->input('password'),
         ];
-        $response = $this->httpPost('api/v2/token', $data);
+
+        $response = Skeleton::http('api/v2/token', $data);
 
         if(isset($response['token_key'])) {
             Token::updateOrCreate([
