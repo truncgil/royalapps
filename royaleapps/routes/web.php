@@ -19,17 +19,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $value = session('token');
-    return view('dashboard');
-});
-
-Route::get('/authors', [AuthorController::class, 'listAuthors']);
-Route::get('/delete-author/{id}', [AuthorController::class, 'deleteAuthor']);
-
-Route::get('/books', [BookController::class, 'listBooks']);
-Route::get('/create-book', [BookController::class, 'createBook']);
-Route::post('/store-book', [BookController::class, 'storeBook']);
-Route::get('/delete-book/{id}', [BookController::class, 'deleteBook']);
-
 Route::post('/get-token', [Authentication::class, 'getToken']);
+
+
+
+
+Route::middleware(['require.token'])->group(function () {
+
+    Route::get('/logout', [Authentication::class, 'logOut']);
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
+    Route::get('/authors', [AuthorController::class, 'listAuthors']);
+    Route::get('/delete-author/{id}', [AuthorController::class, 'deleteAuthor']);
+
+    Route::get('/books', [BookController::class, 'listBooks']);
+    Route::get('/books', [BookController::class, 'listBooks']);
+    Route::get('/create-book', [BookController::class, 'createBook']);
+    Route::post('/store-book', [BookController::class, 'storeBook']);
+    Route::get('/delete-book/{id}', [BookController::class, 'deleteBook']);
+
+    
+});
